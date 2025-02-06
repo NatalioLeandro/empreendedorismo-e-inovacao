@@ -208,7 +208,7 @@ function App() {
               <h3 className="text-xl font-bold mb-4">Contato</h3>
               <p className="text-gray-400">
                 Email: cacor.2022121tads0001@aluno.ifpi.edu.br
-                Acadêmicos: Leandro Natálio e Rayline Mendes
+                <br/>Acadêmicos: Leandro Natálio e Rayline Mendes
               </p>
             </div>
             <div>
