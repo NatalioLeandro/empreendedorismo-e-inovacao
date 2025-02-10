@@ -1,6 +1,57 @@
 import images from "./images";
 import logoLarge from "./assets/logo-large.jpg";
 
+import { useState } from 'react';
+
+import { FiMenu, FiX } from 'react-icons/fi'; 
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <>
+      <nav className="bg-custom-brown text-white p-4 fixed w-full z-10">
+        <div className="container mx-auto flex flex-wrap justify-between items-center">
+          <h1 className="text-2xl font-bold">Empório da Torta</h1>
+          
+          {/* Botão do menu mobile com estilo melhorado */}
+          <button 
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-200 focus:outline-none"
+            onClick={toggleMenu}
+            aria-label="Menu"
+          >
+            {isMenuOpen ? (
+              <FiX className="w-6 h-6" />
+            ) : (
+              <FiMenu className="w-6 h-6" />
+            )}
+          </button>
+
+          {/* Menu de navegação */}
+          <div className={`w-full md:w-auto md:flex ${isMenuOpen ? 'block' : 'hidden'}`}>
+            <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 mt-4 md:mt-0">
+              <a href="#home" className="hover:text-orange-200">
+                Início
+              </a>
+              <a href="#products" className="hover:text-orange-200">
+                Produtos
+              </a>
+              <a href="#about" className="hover:text-orange-200">
+                Sobre
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div className="h-[72px]"></div>
+    </>
+  );
+};
+
 function App() {
   const handleScroll = (): void => {
     const element = document.getElementById("about");
@@ -12,26 +63,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header/Navbar */}
-      <nav className="bg-custom-brown text-white p-4 fixed w-full z-10">
-        {" "}
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Empório da Torta</h1>
-          <div className="hidden md:flex space-x-6">
-            <a href="#home" className="hover:text-orange-200">
-              Início
-            </a>
-            <a href="#products" className="hover:text-orange-200">
-              Produtos
-            </a>
-            <a href="#about" className="hover:text-orange-200">
-              Sobre
-            </a>
-          </div>
-          <button className="md:hidden">
-            <i className="fas fa-bars text-2xl"></i>
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section
@@ -115,12 +147,12 @@ function App() {
                   {torta.price}
                 </p>
                 <a
-                  href="#" 
+                  href="https://wa.me/qr/QMX2TBTHP5MSN1" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-custom-brown text-white px-8 py-3 rounded-full hover:bg-custom-brown-dark transition duration-300"
                 >
-                  Pedir Agora
+                  Saiba Mais
                 </a>
               </div>
             ))}
